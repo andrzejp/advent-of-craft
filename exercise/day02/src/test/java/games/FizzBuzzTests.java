@@ -27,21 +27,10 @@ class FizzBuzzTests {
                 .isEqualTo("Fizz");
     }
 
-    @Test
-    void returns_Buzz_for_5() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(5))
-                .isEqualTo("Buzz");
-    }
-
-    @Test
-    void returns_Buzz_for_50() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(50))
-                .isEqualTo("Buzz");
-    }
-
-    @Test
-    void returns_Buzz_for_85() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(85))
+    @ParameterizedTest
+    @CsvSource({"5", "50", "85"})
+    void should_convert_numbers_divisible_by_five_to_Buzz(Integer input) throws OutOfRangeException {
+        assertThat(FizzBuzz.convert(input))
                 .isEqualTo("Buzz");
     }
 
