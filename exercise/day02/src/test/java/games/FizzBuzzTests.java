@@ -42,19 +42,19 @@ class FizzBuzzTests {
     }
 
     @Test
-    void throws_an_exception_for_0() {
+    void should_disallow_input_of_0() {
         assertThatThrownBy(() -> FizzBuzz.convert(0))
                 .isInstanceOf(OutOfRangeException.class);
     }
 
     @Test
-    void throws_an_exception_for_101() {
+    void should_disallow_input_greater_than_100() {
         assertThatThrownBy(() -> FizzBuzz.convert(101))
                 .isInstanceOf(OutOfRangeException.class);
     }
 
     @Test
-    void throws_an_exception_for_minus_1() {
+    void should_disallow_a_negative_input() {
         assertThatThrownBy(() -> FizzBuzz.convert(-1))
                 .isInstanceOf(OutOfRangeException.class);
     }
