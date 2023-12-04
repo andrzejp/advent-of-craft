@@ -20,21 +20,10 @@ class FizzBuzzTests {
                 .isEqualTo(expected);
     }
 
-    @Test
-    void returns_Fizz_for_3() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(3))
-                .isEqualTo("Fizz");
-    }
-
-    @Test
-    void returns_Fizz_for_66() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(66))
-                .isEqualTo("Fizz");
-    }
-
-    @Test
-    void returns_Fizz_for_99() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(99))
+    @ParameterizedTest
+    @CsvSource({"3", "66", "99"})
+    void should_convert_numbers_divisible_by_three_to_Fizz(Integer input) throws OutOfRangeException {
+        assertThat(FizzBuzz.convert(input))
                 .isEqualTo("Fizz");
     }
 
