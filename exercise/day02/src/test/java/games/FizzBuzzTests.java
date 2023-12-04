@@ -1,27 +1,23 @@
 package games;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class FizzBuzzTests {
-    @Test
-    void returns_the_given_number_for_1() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(1))
-                .isEqualTo("1");
-    }
 
-    @Test
-    void returns_the_given_number_for_67() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(67))
-                .isEqualTo("67");
-    }
-
-    @Test
-    void returns_the_given_number_for_82() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(82))
-                .isEqualTo("82");
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1",
+            "67, 67",
+            "82, 82"
+    })
+    void should_convert_numbers_to_themselves(Integer input, String expected) throws OutOfRangeException {
+        assertThat(FizzBuzz.convert(input))
+                .isEqualTo(expected);
     }
 
     @Test
