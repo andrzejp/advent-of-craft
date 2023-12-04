@@ -34,21 +34,10 @@ class FizzBuzzTests {
                 .isEqualTo("Buzz");
     }
 
-    @Test
-    void returns_FizzBuzz_for_15() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(15))
-                .isEqualTo("FizzBuzz");
-    }
-
-    @Test
-    void returns_FizzBuzz_for_30() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(30))
-                .isEqualTo("FizzBuzz");
-    }
-
-    @Test
-    void returns_FizzBuzz_for_45() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(45))
+    @ParameterizedTest
+    @CsvSource({"15", "30", "45"})
+    void should_convert_numbers_divisible_by_three_and_five_to_FizzBuzz(Integer input) throws OutOfRangeException {
+        assertThat(FizzBuzz.convert(input))
                 .isEqualTo("FizzBuzz");
     }
 
