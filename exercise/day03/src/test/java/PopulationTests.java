@@ -4,8 +4,6 @@ import people.Person;
 import people.PetType;
 import people.Population;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PopulationTests {
@@ -31,7 +29,7 @@ class PopulationTests {
 
     @BeforeEach
     void setup() {
-        population.setPeople(List.of(PETER, STEWIE, JOE, LOIS, MEG, CHRIS, CLEVELAND, GLENN));
+        population.addPeople(PETER, STEWIE, JOE, LOIS, MEG, CHRIS, CLEVELAND, GLENN);
     }
 
     @Test
@@ -39,6 +37,6 @@ class PopulationTests {
         var filtered = population.personWithYoungestPet();
         assertThat(filtered)
                 .isPresent()
-                .contains(new Person("Lois", "Griffin").addPet(PetType.SNAKE, "Serpy", 1));
+                .contains(LOIS);
     }
 }

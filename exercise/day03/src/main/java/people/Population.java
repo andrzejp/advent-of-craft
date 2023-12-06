@@ -7,8 +7,8 @@ import java.util.Optional;
 public class Population {
     private List<Person> people;
 
-    public void setPeople(List<Person> people) {
-        this.people = people;
+    public void addPeople(Person... people) {
+        this.people = List.of(people);
     }
 
     public Optional<Person> personWithYoungestPet() {
