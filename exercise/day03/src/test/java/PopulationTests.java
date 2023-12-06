@@ -33,8 +33,8 @@ class PopulationTests {
 
     @Test
     void whoOwnsTheYoungestPet() {
-        var filtered = population.personWithYoungestPet();
-        assertThat(filtered)
+        var result = population.personWithYoungestPet();
+        assertThat(result)
                 .isPresent()
                 .contains(LOIS);
     }
