@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import people.Person;
 import people.Pet;
 import people.PetType;
+import people.Population;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,11 +11,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PopulationTests {
-    private List<Person> population;
+    private final Population population = new Population();
 
     @BeforeEach
     void setup() {
-        population = List.of(
+        population.setPopulation(List.of(
                 new Person("Peter", "Griffin")
                         .addPet(PetType.CAT, "Tabby", 2),
                 new Person("Stewie", "Griffin")
@@ -32,12 +33,12 @@ class PopulationTests {
                         .addPet(PetType.HAMSTER, "Fuzzy", 1)
                         .addPet(PetType.HAMSTER, "Wuzzy", 2),
                 new Person("Glenn", "Quagmire")
-        );
+        ));
     }
 
     @Test
     void whoOwnsTheYoungestPet() {
-        var filtered = population.stream()
+        var filtered = population.getPopulation().stream()
                 .min(youngestPetComparator())
                 .orElse(null);
 
