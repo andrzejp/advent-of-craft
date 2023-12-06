@@ -38,9 +38,10 @@ class PopulationTests {
     void whoOwnsTheYoungestPet() {
         var filtered = population.personWithYoungestPet();
 
-        assert filtered != null;
-        assertThat(filtered.firstName())
-                .isEqualTo("Lois");
+        assertThat(filtered)
+                .isPresent()
+                .contains(new Person("Lois", "Griffin")
+                        .addPet(PetType.SNAKE, "Serpy", 1));
     }
 
 }
