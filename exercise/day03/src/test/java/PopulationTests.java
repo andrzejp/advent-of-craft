@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import people.Person;
-import people.Pet;
 import people.PetType;
 import people.Population;
 
@@ -39,20 +38,11 @@ class PopulationTests {
     @Test
     void whoOwnsTheYoungestPet() {
         var filtered = population.getPopulation().stream()
-                .min(youngestPetComparator())
+                .min(Comparator.comparingInt(Person::youngestPet))
                 .orElse(null);
 
         assert filtered != null;
         assertThat(filtered.firstName())
                 .isEqualTo("Lois");
-    }
-
-    private Comparator<Person> youngestPetComparator() {
-        return Comparator.comparingInt(
-                person -> person.pets()
-                        .stream()
-                        .mapToInt(Pet::age)
-                        .min()
-                        .orElse(Integer.MAX_VALUE));
     }
 }
