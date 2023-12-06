@@ -8,6 +8,10 @@ public record Person(String firstName, String lastName, List<Pet> pets) {
         this(firstName, lastName, new ArrayList<>());
     }
 
+    public static Person named(String firstName, String lastName) {
+        return new Person(firstName, lastName);
+    }
+
     public Person addPet(PetType petType, String name, int age) {
         pets.add(new Pet(petType, name, age));
         return this;
