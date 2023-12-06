@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import people.Person;
 import people.Pet;
@@ -10,10 +10,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PopulationTests {
-    private static List<Person> population;
+    private List<Person> population;
 
-    @BeforeAll
-    static void setup() {
+    @BeforeEach
+    void setup() {
         population = List.of(
                 new Person("Peter", "Griffin")
                         .addPet(PetType.CAT, "Tabby", 2),
