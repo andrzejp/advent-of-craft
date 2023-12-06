@@ -4,21 +4,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Population {
-    public List<Person> population;
+    private List<Person> people;
 
-    public List<Person> getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(List<Person> population) {
-        this.population = population;
-    }
-
-    public Population() {
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 
     public Person personWithYoungestPet() {
-        return population.stream()
+        return people.stream()
                 .min(Comparator.comparingInt(Person::youngestPet))
                 .orElse(null);
     }

@@ -13,7 +13,7 @@ class PopulationTests {
 
     @BeforeEach
     void setup() {
-        population.setPopulation(List.of(
+        population.setPeople(List.of(
                 new Person("Peter", "Griffin")
                         .addPet(PetType.CAT, "Tabby", 2),
                 new Person("Stewie", "Griffin")
