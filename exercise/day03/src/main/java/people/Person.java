@@ -12,7 +12,7 @@ public record Person(String firstName, String lastName, List<Pet> pets) {
         return new Person(firstName, lastName);
     }
 
-    public Person addPet(PetType petType, String name, int age) {
+    public Person withPet(PetType petType, String name, int age) {
         pets.add(new Pet(petType, name, age));
         return this;
     }
