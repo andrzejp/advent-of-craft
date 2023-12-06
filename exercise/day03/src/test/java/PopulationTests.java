@@ -4,7 +4,6 @@ import people.Person;
 import people.PetType;
 import people.Population;
 
-import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,12 +36,11 @@ class PopulationTests {
 
     @Test
     void whoOwnsTheYoungestPet() {
-        var filtered = population.getPopulation().stream()
-                .min(Comparator.comparingInt(Person::youngestPet))
-                .orElse(null);
+        var filtered = population.personWithYoungestPet();
 
         assert filtered != null;
         assertThat(filtered.firstName())
                 .isEqualTo("Lois");
     }
+
 }
