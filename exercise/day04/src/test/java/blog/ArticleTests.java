@@ -10,6 +10,8 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class ArticleTests {
 
+    public static final String TEXT = "Amazing article !!!";
+    public static final String AUTHOR = "Pablo Escobar";
     private final LocalDate TODAY = LocalDate.of(2023, 12, 4);
     private Article article;
 
@@ -23,40 +25,36 @@ class ArticleTests {
 
     @Test
     void should_add_new_comment_to_article_with_no_comments() throws CommentAlreadyExistException {
-        var text = "Amazing article !!!";
-        var author = "Pablo Escobar";
-
-        article.addComment(text, author, TODAY);
+        article.addComment(TEXT, AUTHOR, TODAY);
 
         then(article.getComments())
                 .hasSize(1)
                 .first()
                 .extracting(Comment::author, Comment::text, Comment::creationDate)
-                .containsExactly(author, text, TODAY);
+                .containsExactly(AUTHOR, TEXT, TODAY);
     }
 
     @Test
     void should_add_new_comment_to_article_with_existing_comment() throws CommentAlreadyExistException {
-        var text = "Amazing article !!!";
-        var author = "Pablo Escobar";
-        article.addComment("any text", "any author", LocalDate.now());
+        String newText = "new text";
+        String newAuthor = "new author";
+        LocalDate newDate = LocalDate.now();
+        article.addComment(newText, newAuthor, newDate);
 
-        article.addComment(text, author, TODAY);
+        article.addComment(TEXT, AUTHOR, TODAY);
 
         then(article.getComments())
                 .hasSize(2)
                 .last()
                 .extracting(Comment::author, Comment::text, Comment::creationDate)
-                .containsExactly(author, text, TODAY);
+                .containsExactly(AUTHOR, TEXT, TODAY);
     }
 
     @Test
     void should_fail_to_add_the_same_comment_twice() throws CommentAlreadyExistException {
-        String text = "Amazing article !!!";
-        String author = "Pablo Escobar";
-        article.addComment(text, author, TODAY);
+        article.addComment(TEXT, AUTHOR, TODAY);
 
-        Exception exception = catchException(() -> article.addComment(text, author, TODAY));
+        Exception exception = catchException(() -> article.addComment(TEXT, AUTHOR, TODAY));
 
         then(exception)
                 .isInstanceOf(CommentAlreadyExistException.class);
