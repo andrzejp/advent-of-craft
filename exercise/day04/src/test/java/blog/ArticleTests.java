@@ -13,11 +13,6 @@ class ArticleTests {
     );
 
     @Test
-    void should_add_valid_comment() throws CommentAlreadyExistException {
-        ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
-    }
-
-    @Test
     void should_add_a_comment_with_the_given_text() throws CommentAlreadyExistException {
         var text = "Amazing article !!!";
 
