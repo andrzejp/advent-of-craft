@@ -13,12 +13,12 @@ class ArticleTests {
     );
 
     @Test
-    void it_should_add_valid_comment() throws CommentAlreadyExistException {
+    void should_add_valid_comment() throws CommentAlreadyExistException {
         ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
     }
 
     @Test
-    void it_should_add_a_comment_with_the_given_text() throws CommentAlreadyExistException {
+    void should_add_a_comment_with_the_given_text() throws CommentAlreadyExistException {
         var text = "Amazing article !!!";
 
         ARTICLE.addComment(text, "Pablo Escobar");
@@ -29,7 +29,7 @@ class ArticleTests {
     }
 
     @Test
-    void it_should_add_a_comment_with_the_given_author() throws CommentAlreadyExistException {
+    void should_add_a_comment_with_the_given_author() throws CommentAlreadyExistException {
         var author = "Pablo Escobar";
 
         ARTICLE.addComment("Amazing article !!!", author);
@@ -40,12 +40,12 @@ class ArticleTests {
     }
 
     @Test
-    void it_should_add_a_comment_with_the_date_of_the_day() throws CommentAlreadyExistException {
+    void should_add_a_comment_with_the_date_of_the_day() throws CommentAlreadyExistException {
         ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
     }
 
     @Test
-    void it_should_throw_an_exception_when_adding_existing_comment() throws CommentAlreadyExistException {
+    void should_throw_an_exception_when_adding_existing_comment() throws CommentAlreadyExistException {
         ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
 
         assertThatThrownBy(() -> ARTICLE.addComment("Amazing article !!!", "Pablo Escobar"))
