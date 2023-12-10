@@ -15,7 +15,7 @@ public class Article {
         this.comments = new ArrayList<>();
     }
 
-    private void addComment(
+    public void addComment(
             String text,
             String author,
             LocalDate creationDate) throws CommentAlreadyExistException {
@@ -24,10 +24,6 @@ public class Article {
         if (comments.contains(comment)) {
             throw new CommentAlreadyExistException();
         } else comments.add(comment);
-    }
-
-    public void addComment(String text, String author) throws CommentAlreadyExistException {
-        addComment(text, author, LocalDate.now());
     }
 
     public List<Comment> getComments() {
