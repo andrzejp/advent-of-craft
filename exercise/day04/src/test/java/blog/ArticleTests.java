@@ -12,7 +12,7 @@ class ArticleTests {
 
     public static final String TEXT = "Amazing article !!!";
     public static final String AUTHOR = "Pablo Escobar";
-    private final LocalDate TODAY = LocalDate.of(2023, 12, 4);
+    private static final LocalDate TODAY = LocalDate.of(2023, 12, 4);
     private Article article;
 
     @BeforeEach
