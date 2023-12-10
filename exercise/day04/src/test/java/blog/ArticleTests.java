@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.BDDAssertions.catchException;
+import static org.assertj.core.api.BDDAssertions.then;
 
 class ArticleTests {
 
@@ -22,13 +22,13 @@ class ArticleTests {
     }
 
     @Test
-    void should_add_a_new_comment_to_an_article_with_no_comments() throws CommentAlreadyExistException {
+    void should_add_new_comment_to_article_with_no_comments() throws CommentAlreadyExistException {
         var text = "Amazing article !!!";
         var author = "Pablo Escobar";
 
         article.addComment(text, author, TODAY);
 
-        assertThat(article.getComments())
+        then(article.getComments())
                 .hasSize(1)
                 .first()
                 .extracting(Comment::author, Comment::text, Comment::creationDate)
@@ -43,19 +43,22 @@ class ArticleTests {
 
         article.addComment(text, author, TODAY);
 
-        assertThat(article.getComments())
+        then(article.getComments())
                 .hasSize(2)
                 .last()
                 .extracting(Comment::author, Comment::text, Comment::creationDate)
                 .containsExactly(author, text, TODAY);
-
     }
 
     @Test
-    void should_throw_an_exception_when_adding_existing_comment() throws CommentAlreadyExistException {
-        article.addComment("Amazing article !!!", "Pablo Escobar", TODAY);
+    void should_fail_to_add_the_same_comment_twice() throws CommentAlreadyExistException {
+        String text = "Amazing article !!!";
+        String author = "Pablo Escobar";
+        article.addComment(text, author, TODAY);
 
-        assertThatThrownBy(() -> article.addComment("Amazing article !!!", "Pablo Escobar", TODAY))
+        Exception exception = catchException(() -> article.addComment(text, author, TODAY));
+
+        then(exception)
                 .isInstanceOf(CommentAlreadyExistException.class);
     }
 }
