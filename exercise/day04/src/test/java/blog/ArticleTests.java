@@ -36,12 +36,19 @@ class ArticleTests {
     }
 
     @Test
-    void should_add_a_comment_with_the_date_of_the_day() throws CommentAlreadyExistException {
-        article.addComment("Amazing article !!!", "Pablo Escobar", TODAY);
+    void should_add_new_comment_to_article_with_existing_comment() throws CommentAlreadyExistException {
+        var text = "Amazing article !!!";
+        var author = "Pablo Escobar";
+        article.addComment("any text", "any author", LocalDate.now());
+
+        article.addComment(text, author, TODAY);
 
         assertThat(article.getComments())
-                .hasSize(1)
-                .anyMatch(comment -> comment.creationDate().equals(TODAY));
+                .hasSize(2)
+                .last()
+                .extracting(Comment::author, Comment::text, Comment::creationDate)
+                .containsExactly(author, text, TODAY);
+
     }
 
     @Test
