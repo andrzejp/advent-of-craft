@@ -22,25 +22,17 @@ class ArticleTests {
     }
 
     @Test
-    void should_add_a_comment_with_the_given_text() throws CommentAlreadyExistException {
+    void should_add_a_new_comment_to_an_article_with_no_comments() throws CommentAlreadyExistException {
         var text = "Amazing article !!!";
-
-        article.addComment(text, "Pablo Escobar", TODAY);
-
-        assertThat(article.getComments())
-                .hasSize(1)
-                .anyMatch(comment -> comment.text().equals(text));
-    }
-
-    @Test
-    void should_add_a_comment_with_the_given_author() throws CommentAlreadyExistException {
         var author = "Pablo Escobar";
 
-        article.addComment("Amazing article !!!", author, TODAY);
+        article.addComment(text, author, TODAY);
 
         assertThat(article.getComments())
                 .hasSize(1)
-                .anyMatch(comment -> comment.author().equals(author));
+                .first()
+                .extracting(Comment::author, Comment::text, Comment::creationDate)
+                .containsExactly(author, text, TODAY);
     }
 
     @Test
