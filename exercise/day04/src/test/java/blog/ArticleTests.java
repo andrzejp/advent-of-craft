@@ -20,6 +20,7 @@ class ArticleTests {
     @Test
     void it_should_add_a_comment_with_the_given_text() throws CommentAlreadyExistException {
         var text = "Amazing article !!!";
+
         ARTICLE.addComment(text, "Pablo Escobar");
 
         assertThat(ARTICLE.getComments())
@@ -30,6 +31,7 @@ class ArticleTests {
     @Test
     void it_should_add_a_comment_with_the_given_author() throws CommentAlreadyExistException {
         var author = "Pablo Escobar";
+
         ARTICLE.addComment("Amazing article !!!", author);
 
         assertThat(ARTICLE.getComments())
@@ -46,8 +48,7 @@ class ArticleTests {
     void it_should_throw_an_exception_when_adding_existing_comment() throws CommentAlreadyExistException {
         ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
 
-        assertThatThrownBy(() -> {
-            ARTICLE.addComment("Amazing article !!!", "Pablo Escobar");
-        }).isInstanceOf(CommentAlreadyExistException.class);
+        assertThatThrownBy(() -> ARTICLE.addComment("Amazing article !!!", "Pablo Escobar"))
+                .isInstanceOf(CommentAlreadyExistException.class);
     }
 }
