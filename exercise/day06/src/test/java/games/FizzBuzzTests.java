@@ -34,21 +34,10 @@ class FizzBuzzTests {
                 .isEqualTo("Buzz");
     }
 
-    @Test
-    void returns_FizzBuzz_for_15() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(15))
-                .isEqualTo("FizzBuzz");
-    }
-
-    @Test
-    void returns_FizzBuzz_for_30() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(30))
-                .isEqualTo("FizzBuzz");
-    }
-
-    @Test
-    void returns_FizzBuzz_for_45() throws OutOfRangeException {
-        assertThat(FizzBuzz.convert(45))
+    @ParameterizedTest
+    @CsvSource({"15", "30", "45"})
+    void should_return_FizzBuzz_for_multiples_of_both_3_and_5(int input) throws OutOfRangeException {
+        assertThat(FizzBuzz.convert(input))
                 .isEqualTo("FizzBuzz");
     }
 
