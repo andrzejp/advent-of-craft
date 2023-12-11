@@ -1,6 +1,5 @@
 package games;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -41,21 +40,10 @@ class FizzBuzzTests {
                 .isEqualTo("FizzBuzz");
     }
 
-    @Test
-    void throws_an_exception_for_0() {
-        assertThatThrownBy(() -> FizzBuzz.convert(0))
-                .isInstanceOf(OutOfRangeException.class);
-    }
-
-    @Test
-    void throws_an_exception_for_101() {
-        assertThatThrownBy(() -> FizzBuzz.convert(101))
-                .isInstanceOf(OutOfRangeException.class);
-    }
-
-    @Test
-    void throws_an_exception_for_minus_1() {
-        assertThatThrownBy(() -> FizzBuzz.convert(-1))
+    @ParameterizedTest
+    @CsvSource({"0", "101", "-1"})
+    void should_only_accept_numbers_between_1_and_100(int input) {
+        assertThatThrownBy(() -> FizzBuzz.convert(input))
                 .isInstanceOf(OutOfRangeException.class);
     }
 }
